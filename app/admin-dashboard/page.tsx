@@ -61,7 +61,7 @@ export default async function AdminDashboardPage() {
                 </tr>
               </thead>
               <tbody>
-                {recentProducts?.map((p, i) => (
+                {recentProducts?.map((p: any, i) => (
                   <tr key={i} className="border-b border-copper-500/5 transition-all duration-200 hover:bg-copper-500/[0.04]">
                     <td className="px-5 py-3 font-body text-brand-beige/70 text-sm">{p.name}</td>
                     <td className="px-5 py-3 text-right font-body text-copper-400 text-sm">
