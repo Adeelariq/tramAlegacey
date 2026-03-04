@@ -1,0 +1,29 @@
+﻿app/admin-dashboard/page.tsx(66,88): error TS2339: Property 'name' does not exist on type 'never'.
+app/admin-dashboard/page.tsx(68,26): error TS2339: Property 'price_on_request' does not exist on type 'never'.
+app/admin-dashboard/page.tsx(68,62): error TS2339: Property 'price' does not exist on type 'never'.
+app/admin-dashboard/page.tsx(68,76): error TS2339: Property 'price' does not exist on type 'never'.
+app/admin-dashboard/page.tsx(71,35): error TS2339: Property 'created_at' does not exist on type 'never'.
+components/admin/CategoriesManager.tsx(69,74): error TS2345: Argument of type '{ name: string; image: string | null; }' is not assignable to parameter of type 'never'.
+components/admin/CategoriesManager.tsx(73,74): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(values: never, options?: { count?: "exact" | "planned" | "estimated" | undefined; } | undefined): PostgrestFilterBuilder<{ PostgrestVersion: "12"; }, never, never, null, "categories", never, "POST">', gave the following error.
+    Argument of type '{ name: string; image: string | null; }' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(values: never[], options?: { count?: "exact" | "planned" | "estimated" | undefined; defaultToNull?: boolean | undefined; } | undefined): PostgrestFilterBuilder<{ PostgrestVersion: "12"; }, never, never, null, "categories", never, "POST">', gave the following error.
+    Argument of type '{ name: string; image: string | null; }' is not assignable to parameter of type 'never[]'.
+      Type '{ name: string; image: string | null; }' is missing the following properties from type 'never[]': length, pop, push, concat, and 35 more.
+components/admin/ProductsManager.tsx(108,72): error TS2345: Argument of type '{ name: string; price: number | null; description: string | null; image: string | null; category_id: string | null; featured: boolean; price_on_request: boolean; enable_whatsapp_inquiry: boolean; enable_email_inquiry: boolean; }' is not assignable to parameter of type 'never'.
+components/admin/ProductsManager.tsx(112,72): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(values: never, options?: { count?: "exact" | "planned" | "estimated" | undefined; } | undefined): PostgrestFilterBuilder<{ PostgrestVersion: "12"; }, never, never, null, "products", never, "POST">', gave the following error.
+    Argument of type '{ name: string; price: number | null; description: string | null; image: string | null; category_id: string | null; featured: boolean; price_on_request: boolean; enable_whatsapp_inquiry: boolean; enable_email_inquiry: boolean; }' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(values: never[], options?: { count?: "exact" | "planned" | "estimated" | undefined; defaultToNull?: boolean | undefined; } | undefined): PostgrestFilterBuilder<{ PostgrestVersion: "12"; }, never, never, null, "products", never, "POST">', gave the following error.
+    Argument of type '{ name: string; price: number | null; description: string | null; image: string | null; category_id: string | null; featured: boolean; price_on_request: boolean; enable_whatsapp_inquiry: boolean; enable_email_inquiry: boolean; }' is not assignable to parameter of type 'never[]'.
+      Type '{ name: string; price: number | null; description: string | null; image: string | null; category_id: string | null; featured: boolean; price_on_request: boolean; enable_whatsapp_inquiry: boolean; enable_email_inquiry: boolean; }' is missing the following properties from type 'never[]': length, pop, push, concat, and 35 more.
+lib/supabase/server.ts(16,16): error TS7006: Parameter 'cookiesToSet' implicitly has an 'any' type.
+lib/supabase/server.ts(18,37): error TS7031: Binding element 'name' implicitly has an 'any' type.
+lib/supabase/server.ts(18,43): error TS7031: Binding element 'value' implicitly has an 'any' type.
+lib/supabase/server.ts(18,50): error TS7031: Binding element 'options' implicitly has an 'any' type.
+middleware.ts(15,16): error TS7006: Parameter 'cookiesToSet' implicitly has an 'any' type.
+middleware.ts(16,35): error TS7031: Binding element 'name' implicitly has an 'any' type.
+middleware.ts(16,41): error TS7031: Binding element 'value' implicitly has an 'any' type.
+middleware.ts(20,35): error TS7031: Binding element 'name' implicitly has an 'any' type.
+middleware.ts(20,41): error TS7031: Binding element 'value' implicitly has an 'any' type.
+middleware.ts(20,48): error TS7031: Binding element 'options' implicitly has an 'any' type.
