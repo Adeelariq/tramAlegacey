@@ -35,7 +35,16 @@ export default function AdminLoginPage() {
   const inputStyle = 'w-full bg-brand-black/50 border border-copper-500/20 text-brand-beige font-body px-4 py-3 focus:outline-none focus:border-copper-500 transition-all duration-300 input-copper'
 
   return (
-    <div className="min-h-screen bg-brand-black flex items-center justify-center px-6">
+    <div className="min-h-screen bg-brand-black flex items-center justify-center px-6 relative">
+      {/* Back to Home Link */}
+      <Link
+        href="/"
+        className="absolute top-6 left-6 sm:top-8 sm:left-8 flex items-center gap-2 text-copper-400 hover:text-copper-300 transition-colors font-sans text-xs tracking-widest uppercase z-50 bg-brand-black/50 p-2 rounded-full backdrop-blur-sm border border-copper-500/20"
+      >
+        <Home size={16} />
+        <span className="hidden sm:inline">Back to Home</span>
+      </Link>
+
       {/* Background */}
       <div className="absolute inset-0">
         <motion.div
@@ -50,7 +59,7 @@ export default function AdminLoginPage() {
       </div>
 
       <motion.div
-        className="relative w-full max-w-md"
+        className="relative w-full max-w-md z-10"
         initial={{ opacity: 0, y: 32 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -144,16 +153,6 @@ export default function AdminLoginPage() {
         <p className="text-center font-sans text-xs text-brand-beige/20 mt-6 mb-6">
           Admin access only. No public registration.
         </p>
-
-        <div className="flex justify-center">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-brand-beige/40 hover:text-copper-400 transition-colors font-sans text-xs tracking-widest uppercase"
-          >
-            <Home size={14} />
-            Back to Home
-          </Link>
-        </div>
       </motion.div>
     </div>
   )
