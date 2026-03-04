@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
-import { Eye, EyeOff, LogIn } from 'lucide-react'
+import { Eye, EyeOff, LogIn, Home } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('')
@@ -140,9 +141,19 @@ export default function AdminLoginPage() {
           </form>
         </motion.div>
 
-        <p className="text-center font-sans text-xs text-brand-beige/20 mt-6">
+        <p className="text-center font-sans text-xs text-brand-beige/20 mt-6 mb-6">
           Admin access only. No public registration.
         </p>
+
+        <div className="flex justify-center">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-brand-beige/40 hover:text-copper-400 transition-colors font-sans text-xs tracking-widest uppercase"
+          >
+            <Home size={14} />
+            Back to Home
+          </Link>
+        </div>
       </motion.div>
     </div>
   )
