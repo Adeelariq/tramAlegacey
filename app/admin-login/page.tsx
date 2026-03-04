@@ -151,7 +151,11 @@ export default function AdminLoginPage() {
         </motion.div>
 
         <p className="text-center font-sans text-xs text-brand-beige/20 mt-6 mb-6">
-          Admin access only. No public registration.
+          Admin access only. No public registration.<br />
+          <Link
+            href="/"
+            className="text-copper-400 hover:text-copper-300 transition-colors font-sans text-xs tracking-widest uppercase"
+          >Back to Home</Link>
         </p>
       </motion.div>
     </div>
