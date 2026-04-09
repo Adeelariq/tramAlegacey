@@ -170,6 +170,7 @@ export default function ProductsManager({ initialProducts, categories }: Props) 
               transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <button
+                type="button"
                 onClick={() => setShowForm(false)}
                 className="absolute top-4 right-4 text-brand-beige/40 hover:text-brand-beige transition-colors"
               >
@@ -329,7 +330,7 @@ export default function ProductsManager({ initialProducts, categories }: Props) 
         {products.length === 0 ? (
           <div className="text-center py-20">
             <p className="font-display text-xl text-brand-beige/30 mb-2">No products yet</p>
-            <button onClick={openAdd} className="btn-copper mt-4 text-xs">Add First Product</button>
+            <button type="button" onClick={openAdd} className="btn-copper mt-4 text-xs">Add First Product</button>
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -376,12 +377,14 @@ export default function ProductsManager({ initialProducts, categories }: Props) 
                     <td className="px-5 py-4">
                       <div className="flex justify-end gap-2">
                         <button
+                          type="button"
                           onClick={() => openEdit(p)}
                           className="p-2 text-brand-beige/40 hover:text-copper-400 border border-copper-500/10 hover:border-copper-500/30 transition-all duration-200"
                         >
                           <Edit2 size={14} />
                         </button>
                         <button
+                          type="button"
                           onClick={() => handleDelete(p.id)}
                           disabled={deletingId === p.id}
                           className="p-2 text-brand-beige/40 hover:text-red-400 border border-copper-500/10 hover:border-red-400/30 transition-all duration-200 disabled:opacity-40"

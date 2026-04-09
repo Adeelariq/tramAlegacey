@@ -128,6 +128,7 @@ export default function CategoriesManager({ initialCategories }: Props) {
               transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <button
+                type="button"
                 onClick={() => setShowForm(false)}
                 className="absolute top-4 right-4 text-brand-beige/40 hover:text-brand-beige transition-colors"
               >
@@ -221,7 +222,7 @@ export default function CategoriesManager({ initialCategories }: Props) {
       {categories.length === 0 ? (
         <div className="glass-card copper-border text-center py-20">
           <p className="font-display text-xl text-brand-beige/30 mb-4">No categories yet</p>
-          <button onClick={openAdd} className="btn-copper text-xs">Add First Category</button>
+          <button type="button" onClick={openAdd} className="btn-copper text-xs">Add First Category</button>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -251,12 +252,14 @@ export default function CategoriesManager({ initialCategories }: Props) {
                 </div>
                 <div className="flex gap-2">
                   <button
+                    type="button"
                     onClick={() => openEdit(cat)}
                     className="p-2 text-brand-beige/40 hover:text-copper-400 border border-copper-500/10 hover:border-copper-500/30 transition-all duration-200"
                   >
                     <Edit2 size={13} />
                   </button>
                   <button
+                    type="button"
                     onClick={() => handleDelete(cat.id)}
                     disabled={deletingId === cat.id}
                     className="p-2 text-brand-beige/40 hover:text-red-400 border border-copper-500/10 hover:border-red-400/30 transition-all duration-200 disabled:opacity-40"

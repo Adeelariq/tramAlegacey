@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import ProductCard from '@/components/ProductCard'
+import { memo } from 'react'
 import type { Product } from '@/types/database'
 
 interface Props {
@@ -23,7 +24,7 @@ const itemVariants = {
   },
 }
 
-export default function AnimatedProductGrid({ products, className }: Props) {
+function AnimatedProductGridComponent({ products, className }: Props) {
   return (
     <motion.div
       className={className ?? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'}
@@ -40,3 +41,6 @@ export default function AnimatedProductGrid({ products, className }: Props) {
     </motion.div>
   )
 }
+
+const AnimatedProductGrid = memo(AnimatedProductGridComponent)
+export default AnimatedProductGrid

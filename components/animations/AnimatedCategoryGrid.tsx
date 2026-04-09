@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import { memo } from 'react'
 import { ArrowRight } from 'lucide-react'
 import type { Category } from '@/types/database'
 
@@ -24,7 +25,7 @@ const itemVariants = {
   },
 }
 
-export default function AnimatedCategoryGrid({ categories }: Props) {
+function AnimatedCategoryGridComponent({ categories }: Props) {
   return (
     <motion.div
       className="grid grid-cols-1 md:grid-cols-3 gap-6"
@@ -44,6 +45,8 @@ export default function AnimatedCategoryGrid({ categories }: Props) {
                 src={cat.image}
                 alt={cat.name}
                 fill
+                loading="lazy"
+                decoding="async"
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -65,3 +68,6 @@ export default function AnimatedCategoryGrid({ categories }: Props) {
     </motion.div>
   )
 }
+
+const AnimatedCategoryGrid = memo(AnimatedCategoryGridComponent)
+export default AnimatedCategoryGrid

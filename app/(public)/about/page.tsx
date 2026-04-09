@@ -56,6 +56,8 @@ export default function AboutPage() {
                   src={img1}
                   alt="Copper craftsmanship in Kashmir"
                   fill
+                  loading="lazy"
+                  decoding="async"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
@@ -128,6 +130,8 @@ export default function AboutPage() {
                   src={img2}
                   alt="Raw copper materials"
                   fill
+                  loading="lazy"
+                  decoding="async"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />

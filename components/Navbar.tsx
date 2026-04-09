@@ -77,6 +77,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
+          type="button"
           className="md:hidden text-brand-beige/70 hover:text-copper-400 transition-colors"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"

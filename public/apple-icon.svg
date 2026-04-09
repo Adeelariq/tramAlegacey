@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="Tram A Legacy">
+  <rect width="180" height="180" rx="36" fill="#0d0d0d"/>
+  <circle cx="90" cy="90" r="62" fill="none" stroke="#B87333" stroke-width="10"/>
+  <path d="M58 102h64M70 78h40" stroke="#d4944a" stroke-width="10" stroke-linecap="round"/>
+</svg>

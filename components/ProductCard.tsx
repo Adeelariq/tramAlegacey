@@ -3,21 +3,33 @@
 import Image from 'next/image'
 import { MessageCircle, Mail, Tag } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { memo, useMemo } from 'react'
 import type { Product } from '@/types/database'
 
 interface ProductCardProps {
   product: Product
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
-  const whatsappMessage = encodeURIComponent(
-    `Hello Tram A Legacy,\n\nI am interested in:\nProduct Name: ${product.name}\nPrice: ${product.price_on_request ? 'Price on Request' : `₹${product.price}`}\n\nPlease share more details.`
+const FALLBACK_IMAGE = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22600%22 viewBox=%220 0 600 600%22%3E%3Crect width=%22600%22 height=%22600%22 fill=%22%23171312%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B87333%22 font-size=%2232%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECopper%20Product%3C/text%3E%3C/svg%3E'
+
+function ProductCardComponent({ product }: ProductCardProps) {
+  const whatsappMessage = useMemo(
+    () =>
+      encodeURIComponent(
+        `Hello Tram A Legacy,\n\nI am interested in:\nProduct Name: ${product.name}\nPrice: ${product.price_on_request ? 'Price on Request' : `₹${product.price}`}\n\nPlease share more details.`
+      ),
+    [product.name, product.price, product.price_on_request]
   )
 
-  const emailSubject = encodeURIComponent(`Inquiry about ${product.name}`)
-  const emailBody = encodeURIComponent(
-    `Hello Tram A Legacy,\n\nI am interested in:\nProduct Name: ${product.name}\nPrice: ${product.price_on_request ? 'Price on Request' : `₹${product.price}`}\n\nPlease share more details.\n\nThank you.`
+  const emailSubject = useMemo(() => encodeURIComponent(`Inquiry about ${product.name}`), [product.name])
+  const emailBody = useMemo(
+    () =>
+      encodeURIComponent(
+        `Hello Tram A Legacy,\n\nI am interested in:\nProduct Name: ${product.name}\nPrice: ${product.price_on_request ? 'Price on Request' : `₹${product.price}`}\n\nPlease share more details.\n\nThank you.`
+      ),
+    [product.name, product.price, product.price_on_request]
   )
+  const imageSrc = (product.image?.trim() || FALLBACK_IMAGE)
 
   return (
     <motion.div
@@ -29,9 +41,11 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="relative aspect-square overflow-hidden bg-brand-brown">
         {product.image ? (
           <Image
-            src={product.image}
+            src={imageSrc}
             alt={product.name}
             fill
+            loading="lazy"
+            decoding="async"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
@@ -107,3 +121,6 @@ export default function ProductCard({ product }: ProductCardProps) {
     </motion.div>
   )
 }
+
+const ProductCard = memo(ProductCardComponent)
+export default ProductCard

@@ -169,6 +169,8 @@ export default async function HomePage() {
                   src={img3}
                   alt="Copper craftsmanship"
                   fill
+                  loading="lazy"
+                  decoding="async"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />

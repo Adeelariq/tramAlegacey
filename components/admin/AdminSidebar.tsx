@@ -63,6 +63,7 @@ export default function AdminSidebar({ userEmail }: AdminSidebarProps) {
       <div className="px-4 py-4 border-t border-copper-500/10">
         <p className="font-sans text-xs text-brand-beige/30 px-4 mb-3 truncate">{userEmail}</p>
         <button
+          type="button"
           onClick={handleLogout}
           className="flex items-center gap-3 px-4 py-3 w-full font-sans text-sm text-brand-beige/40 hover:text-red-400 transition-colors"
         >
@@ -83,7 +84,7 @@ export default function AdminSidebar({ userEmail }: AdminSidebarProps) {
       {/* Mobile top bar */}
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-brand-brown border-b border-copper-500/20 px-4 py-3 flex items-center justify-between">
         <h1 className="font-display text-base font-bold copper-text">Tram A Legacy Admin</h1>
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="text-brand-beige/60">
+        <button type="button" onClick={() => setMobileOpen(!mobileOpen)} className="text-brand-beige/60">
           <AnimatePresence mode="wait" initial={false}>
             {mobileOpen ? (
               <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
