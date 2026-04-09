@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     description: 'Timeless craftsmanship in pure copper. Handcrafted utensils and raw copper materials from Kashmir.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/icon.svg',
         width: 1200,
         height: 630,
         alt: 'Tram A Legacy Copper Utensils',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Tram A Legacy – Premium Copper Utensils',
     description: 'Timeless craftsmanship in pure copper from Kashmir.',
-    images: ['/og-image.jpg'],
+    images: ['/icon.svg'],
   },
   robots: {
     index: true,
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "Organization",
     name: "Tram A Legacy",
     url: "https://tramalegacy.com",
-    logo: "https://tramalegacy.com/og-image.jpg",
+    logo: "https://tramalegacy.com/icon.svg",
     description: "Discover handcrafted pure copper utensils and raw copper materials from the heart of Kashmir. Timeless craftsmanship rooted in Srinagar's artisan heritage.",
     contactPoint: {
       "@type": "ContactPoint",

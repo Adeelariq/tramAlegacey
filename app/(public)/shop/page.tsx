@@ -63,7 +63,7 @@ export default async function ShopPage({ searchParams }: { searchParams: SearchP
     "@type": "Product",
     name: product.name,
     description: product.description || "Premium handcrafted copper product from Kashmir.",
-    image: product.image || "https://tramalegacy.com/og-image.jpg",
+    image: product.image || "https://tramalegacy.com/icon.svg",
     brand: {
       "@type": "Brand",
       name: "Tram A Legacy"

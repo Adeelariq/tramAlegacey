@@ -12,6 +12,13 @@ interface ProductCardProps {
 
 const FALLBACK_IMAGE = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22600%22 viewBox=%220 0 600 600%22%3E%3Crect width=%22600%22 height=%22600%22 fill=%22%23171312%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23B87333%22 font-size=%2232%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3ECopper%20Product%3C/text%3E%3C/svg%3E'
 
+const normalizeImageSrc = (value: string | null) => {
+  const raw = value?.trim()
+  if (!raw) return FALLBACK_IMAGE
+  if (raw.startsWith('http://') || raw.startsWith('https://') || raw.startsWith('data:')) return raw
+  return raw.startsWith('/') ? raw : `/${raw}`
+}
+
 function ProductCardComponent({ product }: ProductCardProps) {
   const whatsappMessage = useMemo(
     () =>
@@ -29,7 +36,7 @@ function ProductCardComponent({ product }: ProductCardProps) {
       ),
     [product.name, product.price, product.price_on_request]
   )
-  const imageSrc = (product.image?.trim() || FALLBACK_IMAGE)
+  const imageSrc = normalizeImageSrc(product.image)
 
   return (
     <motion.div
@@ -39,7 +46,7 @@ function ProductCardComponent({ product }: ProductCardProps) {
     >
       {/* Image */}
       <div className="relative aspect-square overflow-hidden bg-brand-brown">
-        {product.image ? (
+        {imageSrc !== FALLBACK_IMAGE ? (
           <Image
             src={imageSrc}
             alt={product.name}
