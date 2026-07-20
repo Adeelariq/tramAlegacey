@@ -9,7 +9,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = { title: 'Admin Dashboard' }
 
 export default async function AdminDashboardPage() {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const [
     { count: productCount },

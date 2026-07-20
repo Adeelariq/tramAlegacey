@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: 'Manage Products' }
 export const revalidate = 0
 
 export default async function AdminProductsPage() {
-  const supabase = createClient()
+  const supabase = await createClient()
   const [{ data: products }, { data: categories }] = await Promise.all([
     supabase.from('products').select('*, categories(name)').order('created_at', { ascending: false }),
     supabase.from('categories').select('*').order('name'),

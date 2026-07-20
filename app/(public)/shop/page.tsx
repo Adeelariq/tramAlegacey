@@ -18,8 +18,9 @@ interface SearchParams {
   category?: string
 }
 
-export default async function ShopPage({ searchParams }: { searchParams: SearchParams }) {
-  const supabase = createClient()
+export default async function ShopPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
+  const supabase = await createClient()
+  const resolvedParams = await searchParams
 
   // Fetch ALL products and categories once – filtering happens client-side
   const [{ data: categories }, { data: products }] = await Promise.all([
@@ -77,7 +78,7 @@ export default async function ShopPage({ searchParams }: { searchParams: SearchP
         <ShopContent
           categories={(categories as any[]) ?? []}
           products={(products as any[]) ?? []}
-          initialCategory={searchParams.category ?? null}
+          initialCategory={resolvedParams.category ?? null}
         />
       </div>
     </div>

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export const revalidate = 60
 
 export default async function HomePage() {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const [{ data: categories }, { data: featuredProducts }] = await Promise.all([
     supabase.from('categories').select('*').order('created_at'),
