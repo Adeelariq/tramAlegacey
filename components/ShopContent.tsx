@@ -1,7 +1,6 @@
 'use client'
 
-import { useSearchParams, useRouter, usePathname } from 'next/navigation'
-import { useMemo, useCallback, useTransition } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import AnimatedProductGrid from '@/components/animations/AnimatedProductGrid'
 import FadeInSection from '@/components/animations/FadeInSection'
 import type { Product, Category } from '@/types/database'
@@ -9,15 +8,11 @@ import type { Product, Category } from '@/types/database'
 interface ShopContentProps {
   categories: Category[]
   products: Product[]
+  initialCategory: string | null
 }
 
-export default function ShopContent({ categories, products }: ShopContentProps) {
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const pathname = usePathname()
-  const [isPending, startTransition] = useTransition()
-
-  const activeId = searchParams.get('category')
+export default function ShopContent({ categories, products, initialCategory }: ShopContentProps) {
+  const [activeId, setActiveId] = useState<string | null>(initialCategory)
 
   const activeCategory = useMemo(
     () => categories.find((c) => c.id === activeId) ?? null,
@@ -32,20 +27,26 @@ export default function ShopContent({ categories, products }: ShopContentProps) 
     [products, activeId]
   )
 
+  // Update URL without triggering Next.js navigation — keeps URLs shareable
+  // but avoids the RSC re-fetch that causes blank screens on Netlify
   const handleCategoryChange = useCallback(
     (categoryId: string | null) => {
-      startTransition(() => {
-        const params = new URLSearchParams(searchParams.toString())
-        if (categoryId) {
-          params.set('category', categoryId)
-        } else {
-          params.delete('category')
-        }
-        router.push(`${pathname}?${params.toString()}`, { scroll: false })
-      })
+      setActiveId(categoryId)
+      const url = categoryId ? `/shop?category=${categoryId}` : '/shop'
+      window.history.replaceState(null, '', url)
     },
-    [searchParams, router, pathname]
+    []
   )
+
+  // Sync state if user navigates back/forward with browser buttons
+  useEffect(() => {
+    const onPopState = () => {
+      const params = new URLSearchParams(window.location.search)
+      setActiveId(params.get('category'))
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [])
 
   return (
     <>
@@ -93,7 +94,7 @@ export default function ShopContent({ categories, products }: ShopContentProps) 
       )}
 
       {/* Products Grid – key forces remount so animations replay on category switch */}
-      <div className={`transition-opacity duration-200 ${isPending ? 'opacity-60' : 'opacity-100'}`}>
+      <div>
         {filteredProducts.length > 0 ? (
           <AnimatedProductGrid key={activeId ?? '__all__'} products={filteredProducts} />
         ) : (

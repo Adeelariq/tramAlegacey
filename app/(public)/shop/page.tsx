@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server'
-import { Suspense } from 'react'
 import ShopContent from '@/components/ShopContent'
 import type { Metadata } from 'next'
 
@@ -15,7 +14,11 @@ export const metadata: Metadata = {
 
 export const revalidate = 60
 
-export default async function ShopPage() {
+interface SearchParams {
+  category?: string
+}
+
+export default async function ShopPage({ searchParams }: { searchParams: SearchParams }) {
   const supabase = createClient()
 
   // Fetch ALL products and categories once – filtering happens client-side
@@ -71,16 +74,11 @@ export default async function ShopPage() {
         <script key={`schema-${index}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       ))}
       <div className="max-w-7xl mx-auto px-6">
-        <Suspense fallback={
-          <div className="text-center py-24">
-            <div className="inline-block w-8 h-8 border-2 border-copper-500/30 border-t-copper-500 rounded-full animate-spin" />
-          </div>
-        }>
-          <ShopContent
-            categories={(categories as any[]) ?? []}
-            products={(products as any[]) ?? []}
-          />
-        </Suspense>
+        <ShopContent
+          categories={(categories as any[]) ?? []}
+          products={(products as any[]) ?? []}
+          initialCategory={searchParams.category ?? null}
+        />
       </div>
     </div>
   )
